@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  # this is our kafka cluster.
+  kafka-cluster:
+    image: faberchri/fast-data-dev
+    container_name: kafka-cluster
+    environment:
+      ADV_HOST: 127.0.0.1 # Change to 192.168.99.100 if using Docker Toolbox
+      RUNTESTS: 0 # Disable Running tests so the cluster starts faster
+    ports:
+      - "2181:2181" # Zookeeper
+      - "3030:3030" # Landoop UI
+      - "8081-8083:8081-8083" # REST Proxy, Schema Registry, Kafka Connect ports
+      - "9581-9585:9581-9585" # JMX Ports
+      - "9092:9092" # Kafka Broker
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8080:8080"
+  mysql:
+    image: mysql
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: demo
+      MYSQL_PASSWORD: 1
+      MYSQL_DATABASE: demo
+    ports:
+      - '3306:3306'
