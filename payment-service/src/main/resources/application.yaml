@@ -2,13 +2,14 @@ spring:
   cloud:
     stream:
       function:
-        definition : paymentProcessor
+        definition : paymentProcessor;log
       bindings:
         paymentProcessor-in-0 :
           destination: order-event
         paymentProcessor-out-0:
           destination: payment-event
-
+        log-in-0:
+          destination: order-event
 
 server:
   port: 8089

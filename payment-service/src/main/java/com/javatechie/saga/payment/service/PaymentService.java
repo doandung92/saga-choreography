@@ -26,7 +26,7 @@ public class PaymentService {
 
     @PostConstruct
     public void initUserBalanceInDB() {
-        userBalanceRepository.saveAll(Stream.of(new UserBalance(101, 5000), new UserBalance(102, 3000), new UserBalance(103, 4200), new UserBalance(104, 20000), new UserBalance(105, 999)).collect(Collectors.toList()));
+        userBalanceRepository.saveAll(Stream.of(new UserBalance(101, 5000), new UserBalance(102, 3000), new UserBalance(103, 5000), new UserBalance(104, 20000), new UserBalance(105, 999)).collect(Collectors.toList()));
     }
 
     /**
